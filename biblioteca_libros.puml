@@ -1,0 +1,56 @@
+@startuml
+class RecursoBibliografico {
+  -titulo: String
+  -autor: String
+  -codigo: String
+  -prestado: boolean
+  +RecursoBibliografico(titulo: String, autor: String, codigo: String)
+  +prestar(): boolean
+  +devolver(): boolean
+}
+
+class Libro {
+  -genero: String
+  +Libro(titulo: String, autor: String, codigo: String, genero: String)
+}
+
+class Revista {
+  -numero: String
+  +Revista(titulo: String, autor: String, codigo: String, numero: String)
+}
+
+class CD {
+  -serie: String
+  +CD(titulo: String, autor: String, serie: String)
+}
+
+class Periodico {
+  -imprenta: String
+  -fecha: String
+  +Periodico(imprenta: String, fecha: String)
+}
+
+class Pelicula {
+  -director: String
+  -genero: String
+  +Pelicula(titulo: String, director: String, genero: String)
+}
+
+
+class Biblioteca {
+  -nombre: String
+  -recursos: List<RecursoBibliografico>
+  +Biblioteca(nombre: String, direccion: String)
+  +agregarRecurso(recurso: RecursoBibliografico): void
+  +removerRecurso(recurso: RecursoBibliografico): void
+  +buscarRecursoPorTitulo(titulo: String): RecursoBibliografico
+}
+
+Biblioteca *-- "1..*" RecursoBibliografico
+RecursoBibliografico <|-- Libro
+RecursoBibliografico <|-- Revista
+RecursoBibliografico <|-- CD
+RecursoBibliografico <|-- Periodico
+RecursoBibliografico <|-- Pelicula
+
+@enduml
